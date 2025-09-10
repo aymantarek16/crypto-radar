@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { useWatchlistStore } from "../store/useWatchlistStore";
-import { useAlertsStore } from "../store/useAlertsStore";
+import useAlertsStore  from "../store/useAlertsStore";
 import { Coin } from "../../types";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import Loading from "../components/Loading";
