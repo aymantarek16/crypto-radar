@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useAlertsStore } from "../store/useAlertsStore";
+import useAlertsStore  from "../store/useAlertsStore";
 
 export default function NotificationToast() {
   const toast = useAlertsStore((s) => s.toast);
