@@ -16,12 +16,20 @@ export default function WatchlistPage() {
     setMounted(true);
   }, []);
 
-  const { data, error, isLoading } = useSWR(
-    mounted && watchlist.length > 0
-      ? `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${watchlist.join(",")}`
-      : null,
-    fetcher
-  );
+const { data, error, isLoading } = useSWR(
+  mounted && watchlist.length > 0
+    ? `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${watchlist.join(",")}`
+    : null,
+  fetcher,
+  {
+    refreshInterval: 15000,        // every 15 seconds, lighter on API
+    revalidateOnFocus: false,      // prevent refetch on tab focus
+    shouldRetryOnError: true,      // retry if an error occurs
+    errorRetryCount: 3,            // maximum 3 retries
+    errorRetryInterval: 3000,      // retry every 3 seconds
+    fallbackData: [],              // empty array if fetch fails
+  }
+);
 
   if (!mounted) {
     return (

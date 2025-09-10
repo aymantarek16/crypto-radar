@@ -7,10 +7,19 @@ import useSWR from "swr";
 import { fetcher } from "../lib/api";
 
 export default function IndicatorPanel({ coinId }: { coinId: string }) {
-  const { data } = useSWR(
-    `https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=usd&days=30&interval=daily`,
-    fetcher
-  );
+const { data } = useSWR(
+  `https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=usd&days=30&interval=daily`,
+  fetcher,
+  {
+    refreshInterval: 15000,        // every 15 seconds, lighter on API
+    revalidateOnFocus: false,      // prevent refetch on tab focus
+    shouldRetryOnError: true,      // retry if an error occurs
+    errorRetryCount: 3,            // maximum 3 retries
+    errorRetryInterval: 3000,      // retry every 3 seconds
+    fallbackData: { prices: [] },  // empty array if fetch fails
+  }
+);
+
 
   const [indicators, setIndicators] = useState<any>(null);
 

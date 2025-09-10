@@ -13,7 +13,15 @@ export default function HomePage() {
   const { data, error, isLoading } = useSWR(
     "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=1h,24h,7d,30d",
     fetcher,
-    { refreshInterval: 5000, revalidateOnFocus: true }
+    {
+      refreshInterval: 15000,        // refresh every 15 seconds instead of 5 → lighter on API & smooth
+      revalidateOnFocus: false,      // prevent revalidation when tab regains focus
+      shouldRetryOnError: true,      // retry automatically on error
+      errorRetryCount: 3,            // retry up to 3 times
+      errorRetryInterval: 3000,      // wait 3 seconds between retries
+      fallbackData: [],              // provide empty array if API fails
+    }
+
   );
 
   const [query, setQuery] = useState("");

@@ -17,9 +17,18 @@ export default function CoinDetailsPage({ params }: CoinDetailsPageProps) {
   const { id } = React.use(params);
 
   const { data: coin, error, isLoading } = useSWR(
-    `https://api.coingecko.com/api/v3/coins/${id}?localization=false&tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=true`,
-    fetcher
-  );
+  `https://api.coingecko.com/api/v3/coins/${id}?localization=false&tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=true`,
+  fetcher,
+  {
+    refreshInterval: 15000,      // every 15s, lighter on API
+    revalidateOnFocus: false,    // prevent refetch on tab focus
+    shouldRetryOnError: true,    // retry if error occurs
+    errorRetryCount: 3,          // maximum 3 retries
+    errorRetryInterval: 3000,    // retry every 3s
+    fallbackData: {},             // use empty object if fetch fails
+  }
+);
+
 
   if (error) return <div className="p-6 text-red-500">Failed to load coin data.</div>;
   if (isLoading || !coin) return <div className="p-6 text-gray-400">

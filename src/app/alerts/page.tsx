@@ -56,14 +56,26 @@ function triggerNotification(title: string, body: string, speakText?: string) {
 
 /** Fetch prices from CoinGecko (returns object like { bitcoin: { usd: 50000 } }) */
 async function fetchPricesForIds(ids: string[]) {
-  if (!ids.length) return {};
-  const uniq = Array.from(new Set(ids)).join(",");
-  const url = `https://api.coingecko.com/api/v3/simple/price?ids=${encodeURIComponent(
-    uniq
-  )}&vs_currencies=usd`;
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`price fetch failed: ${res.status}`);
-  return await res.json();
+  if (!ids.length) return {}; // return empty if no ids
+
+  try {
+    const uniq = Array.from(new Set(ids)).join(",");
+    const url = `https://api.coingecko.com/api/v3/simple/price?ids=${encodeURIComponent(
+      uniq
+    )}&vs_currencies=usd`;
+
+    const res = await fetch(url);
+
+    if (!res.ok) {
+      console.warn(`Price fetch failed: ${res.status}`); // log warning instead of throwing
+      return {}; // fallback to empty object
+    }
+
+    return await res.json();
+  } catch (err) {
+    console.warn("Error fetching prices:", err);
+    return {}; // fallback to empty object
+  }
 }
 
 export default function AlertsPage() {
