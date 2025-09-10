@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Crypto Radar  
 
-## Getting Started
+🔎 **Crypto Radar** is a modern web application to track real-time cryptocurrency prices, explore charts, set alerts, and manage your personal watchlist — all in a sleek **Dark Mode only** UI.  
 
-First, run the development server:
+Built with the latest **Next.js 15 (App Router + Turbopack)**, **TailwindCSS v4**, and **TypeScript**, designed to be modular, fast, and developer-friendly.  
 
+---
+
+## ✨ Features
+
+- 🔍 **Search & Filter**: Find any coin instantly.  
+- 📊 **Interactive Charts**: Zoom & hover powered by `chart.js + react-chartjs-2`.  
+- 📈 **Indicators**: Built-in RSI, EMA & Pivot (Traditional).  
+- ⭐ **Watchlist**: Save your favorite coins (persisted in `localStorage`).  
+- ⏰ **Smart Alerts**:  
+  - Set custom target prices.  
+  - Edit/Delete alerts anytime.  
+  - Get **toast + sound + image notifications** when the target price is reached.  
+- 🌓 **Dark Mode Only**: Eye-friendly, professional look — no toggle needed.  
+- ⚡ **State Management**: Powered by `zustand` slices for watchlist, alerts, and theme.  
+- 💾 **Local Storage Integration**: Data persistence across sessions.  
+- 🎬 **Smooth Animations** with `Framer Motion`.  
+
+---
+
+## 🛠️ Tech Stack
+
+| Category        | Tech                                                                 |
+|-----------------|----------------------------------------------------------------------|
+| **Framework**   | [Next.js 15](https://nextjs.org/) + App Router + Turbopack           |
+| **Language**    | [TypeScript](https://www.typescriptlang.org/)                        |
+| **Styling**     | [TailwindCSS v4](https://tailwindcss.com/)                           |
+| **Charts**      | [chart.js](https://www.chartjs.org/) + [react-chartjs-2](https://react-chartjs-2.js.org/) |
+| **State**       | [Zustand](https://zustand-demo.pmnd.rs/)                             |
+| **Animations**  | [Framer Motion](https://www.framer.com/motion/)                      |
+| **Data Fetch**  | [SWR](https://swr.vercel.app/)                                       |
+| **Icons**       | [react-icons](https://react-icons.github.io/react-icons/)            |
+
+---
+
+## 🖼️ Screenshots
+
+### 🏠 Home Page
+![Home](./public/screenshots/home.png)
+
+### 📊 Coin Details
+![Coin Details](./public/screenshots/coin-details.png)
+
+### ⭐ Watchlist
+![Watchlist](./public/screenshots/watchlist.png)
+
+### ⏰ Alerts
+![Alerts](./public/screenshots/alerts.png)
+
+
+---
+
+## ⚡ Quick Start
+
+### 1️⃣ Clone the repo
 ```bash
+git clone https://github.com/yourusername/crypto-radar.git
+cd crypto-radar
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Your app will be live on: http://localhost:3000
+ 🚀
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
