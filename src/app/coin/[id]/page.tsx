@@ -68,7 +68,7 @@ export default function CoinDetailsPage({ params }: CoinDetailsPageProps) {
       <IndicatorPanel coinId={id} />
 
       {/* Alerts */}
-      <AlertForm coinId={id} />
+      <AlertForm coinId={id} coinGeckoId={coin.id} />
     </div>
   );
 }
