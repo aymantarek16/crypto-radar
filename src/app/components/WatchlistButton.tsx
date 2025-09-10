@@ -1,15 +1,15 @@
 "use client";
 
-import { useWatchlistStore } from "@/store/useWatchlistStore";
+import { useWatchlistStore } from "../store/useWatchlistStore";
 
 export default function WatchlistButton({ coinId }: { coinId: string }) {
-  const { watchlist, toggleWatchlist } = useWatchlistStore();
+  const { watchlist, toggleCoin } = useWatchlistStore();
 
   const isInWatchlist = watchlist.includes(coinId);
 
   return (
     <button
-      onClick={() => toggleWatchlist(coinId)}
+      onClick={() => toggleCoin(coinId)}
       className={`px-3 py-1 rounded-lg text-sm ${
         isInWatchlist
           ? "bg-red-600 text-white"
