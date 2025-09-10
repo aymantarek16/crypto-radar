@@ -8,7 +8,6 @@ export default function NotificationToast() {
   const toast = useAlertsStore((s) => s.toast);
   const hideToast = useAlertsStore((s) => s.hideToast);
 
-  // اختفاء تلقائي بعد 3 ثواني
   useEffect(() => {
     if (!toast) return;
 

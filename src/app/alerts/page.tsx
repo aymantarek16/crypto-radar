@@ -2,7 +2,7 @@
 "use client";
 
 import NotificationToast from "../components/NotificationToast";
-import { useAlertsStore, Alert } from "../store/useAlertsStore";
+import useAlertsStore, { Alert } from "../store/useAlertsStore";
 import {
   AiOutlineDelete,
   AiOutlineAim,
