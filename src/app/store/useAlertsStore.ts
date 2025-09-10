@@ -30,7 +30,8 @@ interface AlertsState {
   hideToast: () => void;
 }
 
-export const useAlertsStore = create<AlertsState>()(
+const useAlertsStore = create<AlertsState>()(
+
   persist(
     (set) => ({
       alerts: [],
@@ -65,3 +66,5 @@ export const useAlertsStore = create<AlertsState>()(
     { name: "alerts-storage" }
   )
 );
+
+export default useAlertsStore;

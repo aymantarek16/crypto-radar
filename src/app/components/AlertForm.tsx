@@ -1,67 +1,63 @@
-import { create } from "zustand";
-import { persist } from "zustand/middleware";
-import { ReactNode } from "react";
+"use client";
 
-/** Alert type used across the app */
-export interface Alert {
-  id: number;
-  message?: ReactNode | string;
-  coinId: string;       // e.g. "BTC" (display)
-  coinGeckoId: string;  // e.g. "bitcoin" (for CoinGecko API)
-  target: number;
+import { useState } from "react";
+import useAlertsStore from "../store/useAlertsStore"; 
+import NotificationToast from "./NotificationToast";
+
+export default function AlertForm({ coinId, coinGeckoId }: { coinId: string; coinGeckoId: string }) {
+  const [price, setPrice] = useState("");
+  const addAlert = useAlertsStore((s) => s.addAlert);
+  const showToast = useAlertsStore((s) => s.showToast);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!price) return;
+
+    const targetPrice = parseFloat(price);
+    if (isNaN(targetPrice) || targetPrice <= 0) return;
+
+    // Alert object 
+    const newAlert = {
+      id: Date.now(),
+      coinId,
+      coinGeckoId,
+      target: targetPrice,
+      message: `✅ Alert added for ${coinId} @ $${targetPrice.toLocaleString()}`,
+    };
+
+    addAlert(newAlert);
+
+    // Toast object 
+    showToast({
+      id: Date.now(),
+      coinId,
+      target: targetPrice,
+      message: `✅ Alert added for ${coinId} @ $${targetPrice.toLocaleString()}`,
+    });
+
+    setPrice("");
+  };
+
+  return (
+    <form
+      onSubmit={handleSubmit}
+      className="bg-gray-900 p-4 rounded-lg border border-gray-800 flex gap-3 items-center"
+    >
+      <input
+        type="number"
+        step="any"
+        placeholder="Target price..."
+        value={price}
+        onChange={(e) => setPrice(e.target.value)}
+        className="flex-1 bg-transparent outline-none text-sm text-white placeholder-gray-500 border border-gray-700 px-3 py-2 rounded-lg"
+      />
+      <button
+        type="submit"
+        className="px-4 py-2 cursor-pointer bg-blue-600 rounded-lg text-white hover:bg-blue-700 transition"
+      >
+        Add Alert
+      </button>
+      <NotificationToast />
+    </form>
+  );
 }
-
-/** Toast type used for internal toasts */
-export interface Toast {
-  id: number;
-  coinId: string;
-  target: number;
-  message: string;
-}
-
-/** Zustand state shape for alerts + toast */
-interface AlertsState {
-  alerts: Alert[];
-  toast: Toast | null;
-  addAlert: (alert: Alert) => void;
-  updateAlert: (id: number, newTarget: number) => void;
-  removeAlert: (id: number) => void;
-  showToast: (toast: Toast) => void;
-  hideToast: () => void;
-}
-
-export const useAlertsStore = create<AlertsState>()(
-  persist(
-    (set) => ({
-      alerts: [],
-      toast: null,
-
-      // Add new alert
-      addAlert: (alert) =>
-        set((state) => ({
-          alerts: [...state.alerts, alert],
-        })),
-
-      // Update the alert target
-      updateAlert: (id, newTarget) =>
-        set((state) => ({
-          alerts: state.alerts.map((a) =>
-            a.id === id ? { ...a, target: newTarget } : a
-          ),
-        })),
-
-      // Remove an alert
-      removeAlert: (id) =>
-        set((state) => ({
-          alerts: state.alerts.filter((a) => a.id !== id),
-        })),
-
-      // Show an internal toast
-      showToast: (toast) => set({ toast }),
-
-      // Hide toast
-      hideToast: () => set({ toast: null }),
-    }),
-    { name: "alerts-storage" }
-  )
-);
