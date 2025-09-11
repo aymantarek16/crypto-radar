@@ -41,7 +41,7 @@ Built with the latest Next.js 15 (App Router + Turbopack), TailwindCSS v4, and T
 | **Animations**  | [Framer Motion](https://www.framer.com/motion/)                      |
 | **Data Fetch**  | [SWR](https://swr.vercel.app/)                                       |
 | **Icons**       | [react-icons](https://react-icons.github.io/react-icons/)            |
-| **I-Powered**   | Component generation, code scaffolding, UI optimization, API integration, state slices & real-time logic structured using AI assistance |
+| **AI-Powered**   | Component generation, code scaffolding, UI optimization, API integration, state slices & real-time logic structured using AI assistance |
 
 ---
 
