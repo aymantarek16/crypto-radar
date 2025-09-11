@@ -1,8 +1,14 @@
+🤖 AI-Powered Crypto Radar
+
+Crypto Radar is a fully AI-powered modern web application, designed from the ground up with the help of artificial intelligence to automate architecture planning, component generation, state management, and UI/UX optimization. Every aspect of this project — from data fetching, charts, interactive indicators, watchlist management, to real-time alerts — was thoughtfully structured and generated leveraging AI-assisted development.
+
+This ensures scalable, modular, and maintainable code, making Crypto Radar not only a tool for cryptocurrency tracking but also a showcase of AI-driven full-stack development.
+
 # 🚀 Crypto Radar  
 
-🔎 **Crypto Radar** is a modern web application to track real-time cryptocurrency prices, explore charts, set alerts, and manage your personal watchlist — all in a sleek **Dark Mode only** UI.  
+🔎 **Crypto Radar** is a modern web application to track real-time cryptocurrency prices, explore charts, set alerts, and manage your personal watchlist — all in a sleek Dark Mode only UI.
 
-Built with the latest **Next.js 15 (App Router + Turbopack)**, **TailwindCSS v4**, and **TypeScript**, designed to be modular, fast, and developer-friendly.  
+Built with the latest Next.js 15 (App Router + Turbopack), TailwindCSS v4, and TypeScript, designed to be modular, fast, and developer-friendly.
 
 ---
 
@@ -23,7 +29,7 @@ Built with the latest **Next.js 15 (App Router + Turbopack)**, **TailwindCSS v4*
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠️ Tech Stack & AI Integration
 
 | Category        | Tech                                                                 |
 |-----------------|----------------------------------------------------------------------|
@@ -35,6 +41,7 @@ Built with the latest **Next.js 15 (App Router + Turbopack)**, **TailwindCSS v4*
 | **Animations**  | [Framer Motion](https://www.framer.com/motion/)                      |
 | **Data Fetch**  | [SWR](https://swr.vercel.app/)                                       |
 | **Icons**       | [react-icons](https://react-icons.github.io/react-icons/)            |
+| **I-Powered**   | Component generation, code scaffolding, UI optimization, API integration, state slices & real-time logic structured using AI assistance |
 
 ---
 
@@ -63,6 +70,5 @@ git clone https://github.com/yourusername/crypto-radar.git
 cd crypto-radar
 npm install
 npm run dev
-Your app will be live on: http://localhost:3000
- 🚀
+Your app will be live on: http://localhost:3000 🚀
 
