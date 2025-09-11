@@ -11,12 +11,12 @@ export default function IndicatorPanel({ coinId }: { coinId: string }) {
     `https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=usd&days=30&interval=daily`,
     fetcher,
     {
-      refreshInterval: 15000,
-      revalidateOnFocus: false,
-      shouldRetryOnError: true,
-      errorRetryCount: 3,
-      errorRetryInterval: 3000,
-      fallbackData: { prices: [] },
+    refreshInterval: 10000,        // refresh every 10 seconds (safe & smooth UX)
+revalidateOnFocus: true,       // ensures data always fresh when user comes back
+errorRetryCount: 3,
+errorRetryInterval: 3000,
+fallbackData: { prices: [] },
+
     }
   );
 

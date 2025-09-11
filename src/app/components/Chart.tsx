@@ -31,12 +31,12 @@ const { data, error } = useSWR(
   `https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=usd&days=30`,
   fetcher,
   {
-    refreshInterval: 15000,      // every 15s, lighter on API
-    revalidateOnFocus: false,    // prevent refetch on tab focus
-    shouldRetryOnError: true,    // retry if error occurs
-    errorRetryCount: 3,          // maximum 3 retries
-    errorRetryInterval: 3000,    // retry every 3s
-    fallbackData: { prices: [] }, // empty array if fetch fails
+refreshInterval: 10000,        // refresh every 10 seconds (safe & smooth UX)
+revalidateOnFocus: true,       // ensures data always fresh when user comes back
+errorRetryCount: 3,
+errorRetryInterval: 3000,
+fallbackData: { prices: [] },
+
   }
 );
 
